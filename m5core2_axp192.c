@@ -82,13 +82,13 @@ esp_err_t m5core2_init() {
     }
 	
 	// GPIO4 is reset for LCD and touch
-	m5core2_axp_twiddle(AXP192_GPIO40_FUNCTION_CONTROL, ~0x72, 0x84);
-    m5core2_axp_twiddle(AXP192_GPIO40_SIGNAL_STATUS, 0x02, 0x00);
-    vTaskDelay(100 / portTICK_RATE_MS);
-    if (m5core2_axp_twiddle(AXP192_GPIO40_SIGNAL_STATUS, 0x02, 0x02) == ESP_OK) {
+	m5core2_axp_twiddle(AXP192_GPIO43_FUNCTION_CONTROL, ~0x72, 0x84);
+    m5core2_axp_twiddle(AXP192_GPIO43_SIGNAL_STATUS, 0x02, 0x00);
+    vTaskDelay(100 / portTICK_PERIOD_MS);
+    if (m5core2_axp_twiddle(AXP192_GPIO43_SIGNAL_STATUS, 0x02, 0x02) == ESP_OK) {
     	ESP_LOGI(TAG, "\tLCD and touch reset");
     }
-    vTaskDelay(100 / portTICK_RATE_MS);
+    vTaskDelay(100 / portTICK_PERIOD_MS);
     
     return ESP_OK;
 }
